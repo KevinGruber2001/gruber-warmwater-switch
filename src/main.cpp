@@ -6,10 +6,10 @@
 #define BUTTON 5
 #define LED 4
 
-const char *ssid = "Gruber";
-const char *password = "ninopino";
+const char *ssid = "";
+const char *password = "";
 
-const char *mqtt_server = "192.168.178.190";
+const char *mqtt_server = "";
 
 const char *clientTopic = "warmwasser/client";
 const char *deviceTopic = "warmwasser/device";
