@@ -2,14 +2,15 @@
 #include <WifiClient.h>
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h>
+#include <stdio.h>
 
 #define BUTTON 5
 #define LED 4
 
-const char *ssid = "";
-const char *password = "";
+const char *ssid = WIFI_SSID;
+const char *password = WIFI_SECRET;
 
-const char *mqtt_server = "";
+const char *mqtt_server = MQTT_BROKER;
 
 const char *clientTopic = "warmwasser/client";
 const char *deviceTopic = "warmwasser/device";
@@ -99,6 +100,7 @@ void reconnect()
 
 void setup()
 {
+
   pinMode(BUTTON, 5);
   pinMode(LED, OUTPUT);
   Serial.begin(115200);
