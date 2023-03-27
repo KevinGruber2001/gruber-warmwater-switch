@@ -3,6 +3,7 @@
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h>
 #include <stdio.h>
+#include <ww_client/Led.h>
 
 #define BUTTON 5
 #define LED 4
@@ -19,6 +20,8 @@ const char *deviceId = "Client-1";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
+
+Led led(LED);
 
 long lastMsg = 0;
 bool oldStatusButton = HIGH;
@@ -65,11 +68,11 @@ void callback(char *topic, byte *message, unsigned int length)
   {
     if (messageTemp == "RUN")
     {
-      digitalWrite(LED, HIGH);
+      led.toggleOn();
     }
     if (messageTemp == "STOP")
     {
-      digitalWrite(LED, LOW);
+      led.toggleOff();
     }
   }
 }
@@ -102,10 +105,9 @@ void setup()
 {
 
   pinMode(BUTTON, 5);
-  pinMode(LED, OUTPUT);
   Serial.begin(115200);
 
-  digitalWrite(LED, LOW);
+  led.toggleOff();
 
   setup_wifi();
   client.setServer(mqtt_server, 1883);
